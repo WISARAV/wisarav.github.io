@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desafíos - FUMANCHU 200</title>
+  <!-- Iconos de FontAwesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Animate.css para animaciones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    /* Estilos generales (similar a la página principal) */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #eef4fb;
+      overflow-x: hidden;
+      position: relative;
+    }
+    /* Barra de navegación */
+    nav {
+      background-color: #007BFF;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px 20px;
+      position: relative;
+      z-index: 10;
+    }
+    nav .nav-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    nav h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    nav .insignia {
+      margin-top: 5px;
+      font-size: 0.9rem;
+      color: #dcdcdc;
+      border: 2px solid #000080;
+      padding: 3px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    nav .insignia img {
+      width: 60px;
+      height: auto;
+      display: block;
+    }
+    nav ul {
+      list-style: none;
+      margin: 10px 0 0 0;
+      padding: 0;
+      display: flex;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+    }
+    nav ul li a i {
+      margin-right: 8px;
+    }
+    /* Encabezado */
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #007BFF;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    header h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      animation: textGlow 2s infinite alternate;
+    }
+    @keyframes textGlow {
+      from { text-shadow: 0 0 10px #fff, 0 0 20px #fff; }
+      to   { text-shadow: 0 0 20px #fffa, 0 0 30px #fffa; }
+    }
+    /* Contenedor principal */
+    main {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      min-height: 400px;
+    }
+    /* Estilos para el quiz */
+    #quiz-container {
+      margin-top: 20px;
+    }
+    .quiz-item {
+      animation: fadeInUp 0.8s;
+    }
+    .quiz-question {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .quiz-options label {
+      display: block;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    .quiz-options input[type="radio"] {
+      margin-right: 8px;
+    }
+    .quiz-btn {
+      background-color: #007BFF;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+    .quiz-btn:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      font-size: 1.2rem;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #007BFF;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    /* Footer */
+    footer {
+      background-color: #007BFF;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra de navegación -->
+  <nav>
+    <div class="nav-top">
+      <h1>FUMANCHU 200</h1>
+      <div class="insignia">
+        <img src="img/insignia.jpg" alt="Insignia Oficial">
+      </div>
+    </div>
+    <ul>
+      <li><a href="index.html"><i class="fas fa-home"></i>Inicio</a></li>
+      <li><a href="novedades.html"><i class="fas fa-bullhorn"></i>Novedades</a></li>
+      <li><a href="desafios.html"><i class="fas fa-chart-line"></i>Desafíos</a></li>
+      <li><a href="archivos.html"><i class="fas fa-folder"></i>Archivos</a></li>
+    </ul>
+  </nav>
+
+  <!-- Encabezado -->
+  <header>
+    <h2>Desafíos Interactivos</h2>
+    <p>Responde preguntas intercaladas sobre Química Orgánica, General y Analítica</p>
+  </header>
+
+  <!-- Contenedor principal: Quiz Interactivo -->
+  <main>
+    <div id="quiz-container">
+      <!-- Aquí se mostrará el quiz -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 FUMANCHU 200 - Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    // Palabras prohibidas para el nombre
+    const prohibitedWords = ["mierda", "puta", "inapropiado"];
+
+    // Solicitar nombre al usuario y validar
+    let userName = "";
+    while (!userName) {
+      userName = prompt("Por favor, ingresa tu nombre:");
+      if (!userName) {
+        alert("Debes ingresar un nombre.");
+        continue;
+      }
+      const lowerName = userName.toLowerCase();
+      const invalid = prohibitedWords.some(word => lowerName.includes(word));
+      if (invalid) {
+        alert("El nombre ingresado contiene lenguaje inapropiado. Intenta de nuevo.");
+        userName = "";
+      }
+    }
+
+    // Definir preguntas intercaladas de diferentes temas
+    const questions = [
+      {
+        topic: "Química Orgánica",
+        question: "¿Cuál de los siguientes compuestos es orgánico?",
+        options: ["Metano", "NaCl", "H2O", "CaCO3"],
+        correct: 0
+      },
+      {
+        topic: "Química General",
+        question: "¿Qué es un elemento químico?",
+        options: [
+          "Sustancia compuesta por átomos idénticos", 
+          "Mezcla de compuestos", 
+          "Sustancia compuesta por moléculas diferentes", 
+          "Ninguna de las anteriores"
+        ],
+        correct: 0
+      },
+      {
+        topic: "Química Analítica",
+        question: "¿Qué técnica se utiliza para el análisis cuantitativo de una muestra?",
+        options: ["Espectrofotometría", "Electroforesis", "Cromatografía", "Centrifugación"],
+        correct: 0
+      },
+      {
+        topic: "Química Orgánica",
+        question: "¿Qué tipo de enlace es predominante en los compuestos orgánicos?",
+        options: ["Covalente", "Iónico", "Metálico", "Puente de hidrógeno"],
+        correct: 0
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let totalScore = 0;
+    let questionStartTime = 0;
+
+    const quizContainer = document.getElementById("quiz-container");
+
+    function showQuestion() {
+      if (currentQuestionIndex >= questions.length) {
+        quizContainer.innerHTML = `<p class="result">¡Felicidades ${userName}! Tu puntuación final es: ${totalScore} puntos.</p>`;
+        return;
+      }
+
+      const q = questions[currentQuestionIndex];
+      questionStartTime = Date.now();
+      let html = `
+        <div class="quiz-item animate__animated animate__fadeInUp">
+          <p><strong>Pregunta ${currentQuestionIndex + 1} (${q.topic}):</strong></p>
+          <p class="quiz-question">${q.question}</p>
+          <form id="quiz-form">
+            <div class="quiz-options">
+      `;
+      q.options.forEach((option, index) => {
+        html += `<label><input type="radio" name="answer" value="${index}" required> ${option}</label>`;
+      });
+      html += `
+            </div>
+            <button type="submit" class="quiz-btn">Enviar Respuesta</button>
+          </form>
+          <div id="feedback"></div>
+        </div>
+      `;
+      quizContainer.innerHTML = html;
+
+      document.getElementById("quiz-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const selected = document.querySelector('input[name="answer"]:checked').value;
+        const elapsed = (Date.now() - questionStartTime) / 1000; // tiempo en segundos
+        let scoreForQuestion = 0;
+        if (parseInt(selected) === q.correct) {
+          // Bonus: entre mayor rapidez, mayor bonus (mínimo 200 puntos base)
+          const bonus = Math.max(0, Math.floor(1000 - elapsed * 100));
+          scoreForQuestion = 200 + bonus;
+          totalScore += scoreForQuestion;
+          document.getElementById("feedback").innerHTML = `<p style="color:green;">¡Correcto! Has obtenido ${scoreForQuestion} puntos.</p>`;
+        } else {
+          document.getElementById("feedback").innerHTML = `<p style="color:red;">Respuesta incorrecta. No obtienes puntos.</p>`;
+        }
+        setTimeout(() => {
+          currentQuestionIndex++;
+          showQuestion();
+        }, 2000);
+      });
+    }
+
+    // Iniciar el quiz
+    showQuestion();
+  </script>
+</body>
+</html>
