@@ -4,36 +4,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FUMANCHU 200</title>
+  <!-- Iconos de FontAwesome -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
-    /* Estilos generales */
+    /* Colores y estilos generales */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
+      background-color: #eef4fb;
+      overflow-x: hidden;
+      position: relative;
     }
-
+    
+    /* Destellos */
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: sparkle 1s linear forwards;
+    }
+    
+    @keyframes sparkle {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      80% {
+        transform: scale(1.5);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+    
     /* Barra de navegación */
     nav {
-      background-color: #4c1d95; /* Color morado */
+      background-color: #007BFF;
       color: white;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
       padding: 15px 20px;
+      position: relative;
+      z-index: 10;
     }
-
+    
+    nav .nav-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    nav h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    
+    nav .insignia {
+      margin-top: 5px;
+      font-size: 0.9rem;
+      color: #dcdcdc;
+    }
+    
     nav ul {
       list-style: none;
-      margin: 0;
+      margin: 10px 0 0 0;
       padding: 0;
       display: flex;
     }
-
+    
     nav ul li {
       margin: 0 15px;
     }
-
+    
     nav ul li a {
       color: white;
       text-decoration: none;
@@ -41,19 +89,36 @@
       display: flex;
       align-items: center;
     }
-
+    
     nav ul li a i {
       margin-right: 8px;
     }
-
-    /* Sección de bienvenida */
+    
+    /* Encabezado de bienvenida */
     header {
       text-align: center;
       padding: 20px;
-      background-color: #4c1d95;
+      background-color: #007BFF;
       color: white;
+      position: relative;
+      overflow: hidden;
     }
-
+    
+    header h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      animation: textGlow 2s infinite alternate;
+    }
+    
+    @keyframes textGlow {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+      }
+      to {
+        text-shadow: 0 0 20px #fffa, 0 0 30px #fffa;
+      }
+    }
+    
     /* Carrusel */
     .carrusel-container {
       position: relative;
@@ -64,17 +129,17 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
-
+    
     .carrusel-slide {
       display: none;
       width: 100%;
     }
-
+    
     .carrusel-slide img {
       width: 100%;
       display: block;
     }
-
+    
     /* Secciones de contenido */
     section {
       max-width: 1200px;
@@ -84,45 +149,79 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
-
-    h2 {
+    
+    section h2 {
       text-align: center;
-      color: #4c1d95;
+      color: #007BFF;
+      margin-bottom: 10px;
     }
-
-    p {
+    
+    section p {
       text-align: justify;
       font-size: 1.1rem;
       line-height: 1.6;
     }
-
+    
     /* Sección de colaboradores */
     .colaboradores ul {
       list-style: none;
       padding: 0;
       text-align: center;
     }
-
+    
     .colaboradores li {
       font-size: 1.1rem;
       margin: 8px 0;
     }
-
+    
+    /* Sección de video */
+    .video-section {
+      text-align: center;
+    }
+    
+    .video-section iframe, 
+    .video-section video {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    
     /* Footer */
     footer {
-      background-color: #4c1d95;
+      background-color: #007BFF;
       color: white;
       text-align: center;
       padding: 10px;
       margin-top: 20px;
     }
+    
+    /* Estilo para el canvas de moléculas */
+    #moleculeCanvas {
+      display: block;
+      margin: 0 auto;
+      background-color: #eef4fb;
+      border: 1px solid #007BFF;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
 
+  <!-- Contenedor de destellos -->
+  <div id="sparkles-container"></div>
+
   <!-- Barra de navegación -->
   <nav>
-    <h1>FUMANCHU 200</h1>
+    <div class="nav-top">
+      <h1>FUMANCHU 200</h1>
+      <!-- Espacio para la insignia -->
+      <div class="insignia">
+        <img src="img/insignia.jpg" alt="">
+      </div>
+    </div>
     <ul>
       <li><a href="#"><i class="fas fa-home"></i>Inicio</a></li>
       <li><a href="#"><i class="fas fa-bullhorn"></i>Novedades</a></li>
@@ -131,7 +230,7 @@
     </ul>
   </nav>
 
-  <!-- Sección de bienvenida -->
+  <!-- Encabezado de bienvenida -->
   <header>
     <h2>Bienvenidos a FUMANCHU 200</h2>
     <p>Un espacio dedicado a exponer y valorar el papel del químico farmacéutico en la sociedad.</p>
@@ -169,29 +268,104 @@
     </ul>
   </section>
 
+  <!-- Sección de Video Representativo -->
+  <section class="video-section">
+    <h2>Video Representativo</h2>
+    <!-- Puedes reemplazar el iframe por un elemento <video> si cuentas con un archivo local -->
+    <iframe src="https://www.youtube.com/watch?v=5mSU-7FXxRo" allowfullscreen title="Video Químico Farmacéutico"></iframe>
+  </section>
+
+  <!-- Sección de Animación de Moléculas -->
+  <section>
+    <h2>Animación de Moléculas</h2>
+    <canvas id="moleculeCanvas" width="800" height="300"></canvas>
+  </section>
+
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 FUMANCHU 200 - Todos los derechos reservados</p>
   </footer>
 
-  <!-- Script para el carrusel de imágenes -->
+  <!-- JavaScript para el carrusel, destellos y animación de moléculas -->
   <script>
+    /* Carrusel de imágenes */
     let slideIndex = 0;
     const slides = document.getElementsByClassName("carrusel-slide");
-
     function showSlides() {
       for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
+        slides[i].style.display = "none";
       }
       slideIndex++;
       if (slideIndex > slides.length) {
         slideIndex = 1;
-      }    
-      slides[slideIndex - 1].style.display = "block";  
-      setTimeout(showSlides, 5000); // Cambia de imagen cada 5 segundos
+      }
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 5000); // Cambia cada 5 segundos
+    }
+    showSlides();
+
+    /* Efecto de destellos (sparkles) */
+    function createSparkle() {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      // Posición aleatoria en el body
+      sparkle.style.top = Math.random() * window.innerHeight + 'px';
+      sparkle.style.left = Math.random() * window.innerWidth + 'px';
+      document.body.appendChild(sparkle);
+      // Remover el destello después de su animación
+      setTimeout(() => {
+        sparkle.remove();
+      }, 1000);
+    }
+    // Crear destellos periódicamente
+    setInterval(createSparkle, 300);
+
+    /* Animación de moléculas en canvas */
+    const canvas = document.getElementById('moleculeCanvas');
+    const ctx = canvas.getContext('2d');
+    const molecules = [];
+    const numMolecules = 20;
+
+    // Objeto molécula
+    class Molecule {
+      constructor() {
+        this.radius = Math.random() * 5 + 5;
+        this.x = Math.random() * (canvas.width - 2 * this.radius) + this.radius;
+        this.y = Math.random() * (canvas.height - 2 * this.radius) + this.radius;
+        this.dx = (Math.random() - 0.5) * 2;
+        this.dy = (Math.random() - 0.5) * 2;
+        this.color = 'rgba(0,123,255,0.7)';
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+      update() {
+        if(this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+          this.dx = -this.dx;
+        }
+        if(this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+          this.dy = -this.dy;
+        }
+        this.x += this.dx;
+        this.y += this.dy;
+        this.draw();
+      }
     }
 
-    showSlides();
+    // Inicializar moléculas
+    for(let i = 0; i < numMolecules; i++){
+      molecules.push(new Molecule());
+    }
+
+    function animateMolecules() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      molecules.forEach(mol => mol.update());
+      requestAnimationFrame(animateMolecules);
+    }
+    animateMolecules();
   </script>
 
 </body>
