@@ -1,14 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FUMANCHU 200</title>
+  <style>
+    /* Estilos básicos de la página */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+    }
+
+    header {
+      background-color: #4c1d95; /* color púrpura o similar */
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Sección de presentación */
+    .presentacion {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .presentacion p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Carrusel de imágenes */
+    .carrusel-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .carrusel-slide {
+      display: none;
+      width: 100%;
+      height: auto;
+    }
+
+    .carrusel-slide img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Sección de la historia */
+    .historia {
+      margin-bottom: 40px;
+    }
+
+    .historia h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .historia p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    /* Sección de colaboradores */
+    .colaboradores {
+      margin-bottom: 40px;
+    }
+
+    .colaboradores h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .colaboradores ul {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+    }
+
+    .colaboradores li {
+      margin: 5px 0;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background-color: #4c1d95;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
 </head>
 <body>
-  <div>
-    <h1>EM  IMPLEMENTACIÓN</h1>>
-    <h1>MI DORMILONA FAVORITA</h1>
-  </div>
+  <!-- Encabezado -->
+  <header>
+    <h1>FUMANCHU 200</h1>
+  </header>
+
+  <main>
+    <!-- Sección de presentación -->
+    <section class="presentacion">
+      <p>
+        Bienvenidos al sitio pensado para exponer y resaltar la labor de los profesionales de la química y la farmacia, 
+        su historia, su impacto y los proyectos que rodean este apasionante campo.
+      </p>
+    </section>
+
+    <!-- Carrusel de imágenes -->
+    <div class="carrusel-container">
+      <!-- Reemplaza las rutas de estas imágenes con las tuyas -->
+      <div class="carrusel-slide">
+        <img src="imagen1.jpg" alt="Imagen 1">
+      </div>
+      <div class="carrusel-slide">
+        <img src="imagen2.jpg" alt="Imagen 2">
+      </div>
+      <div class="carrusel-slide">
+        <img src="imagen3.jpg" alt="Imagen 3">
+      </div>
+      <!-- Puedes añadir más divs con imágenes según necesites -->
+    </div>
+
+    <!-- Sección de la historia -->
+    <section class="historia">
+      <h2>Historia y Rol del Químico Farmacéutico</h2>
+      <p>
+        A lo largo de la historia, el químico farmacéutico ha jugado un papel fundamental 
+        en el desarrollo de medicamentos que salvan millones de vidas alrededor del mundo. 
+        Desde la identificación de principios activos en plantas hasta la síntesis de nuevos 
+        compuestos, su labor es vital para la salud y el bienestar de la sociedad. 
+        En esta página, exploraremos la evolución de esta disciplina y el impacto que ha tenido 
+        en la medicina moderna.
+      </p>
+    </section>
+
+    <!-- Sección de colaboradores -->
+    <section class="colaboradores">
+      <h2>Colaboradores</h2>
+      <ul>
+        <li>WILDER TUDELA (Desarrollador)</li>
+        <li>CODE WORK STUDIOS (Empresa nueva de desarrollo web)</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 FUMANCHU 200</p>
+  </footer>
+
+  <!-- Script para el carrusel de imágenes -->
+  <script>
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("carrusel-slide");
+
+    function showSlides() {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
+      }    
+      slides[slideIndex - 1].style.display = "block";  
+      setTimeout(showSlides, 5000); // Cambia de imagen cada 5 segundos
+    }
+
+    // Inicia el carrusel
+    showSlides();
+  </script>
 </body>
 </html>
