@@ -44,7 +44,7 @@
     
     /* Barra de navegación */
     nav {
-      background-color: #007BFF;
+      background-color: #011933;
       color: white;
       display: flex;
       flex-direction: column;
@@ -69,6 +69,18 @@
       margin-top: 5px;
       font-size: 0.9rem;
       color: #dcdcdc;
+      /* Estilo para la insignia */
+      border: 2px solid #030332; /* azul marino */
+      padding: 3px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    
+    /* Reducir el tamaño de la imagen de la insignia */
+    nav .insignia img {
+      width: 60px;
+      height: auto;
+      display: block;
     }
     
     nav ul {
@@ -98,7 +110,7 @@
     header {
       text-align: center;
       padding: 20px;
-      background-color: #007BFF;
+      background-color: #030d17;
       color: white;
       position: relative;
       overflow: hidden;
@@ -152,7 +164,7 @@
     
     section h2 {
       text-align: center;
-      color: #007BFF;
+      color: #03101e;
       margin-bottom: 10px;
     }
     
@@ -191,7 +203,7 @@
     
     /* Footer */
     footer {
-      background-color: #007BFF;
+      background-color: #011933;
       color: white;
       text-align: center;
       padding: 10px;
@@ -203,7 +215,7 @@
       display: block;
       margin: 0 auto;
       background-color: #eef4fb;
-      border: 1px solid #007BFF;
+      border: 1px solid #04182c;
       border-radius: 10px;
     }
   </style>
@@ -219,12 +231,12 @@
       <h1>FUMANCHU 200</h1>
       <!-- Espacio para la insignia -->
       <div class="insignia">
-        <img src="img/insignia.jpg" alt="">
+        <img src="img/insignia.jpg" alt="Insignia Oficial">
       </div>
     </div>
     <ul>
-      <li><a href="#"><i class="fas fa-home"></i>Inicio</a></li>
-      <li><a href="#"><i class="fas fa-bullhorn"></i>Novedades</a></li>
+      <li><a href="index.html"><i class="fas fa-home"></i>Inicio</a></li>
+      <li><a href="novedades.html"><i class="fas fa-bullhorn"></i>Novedades</a></li>
       <li><a href="#"><i class="fas fa-chart-line"></i>Desafíos</a></li>
       <li><a href="#"><i class="fas fa-folder"></i>Archivos</a></li>
     </ul>

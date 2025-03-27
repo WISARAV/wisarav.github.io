@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novedades - FUMANCHU 200</title>
+  <!-- Iconos de FontAwesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Animate.css para animaciones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    /* Global styles similares a la página principal */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #eef4fb;
+      overflow-x: hidden;
+      position: relative;
+    }
+    /* Barra de navegación */
+    nav {
+      background-color: #007BFF;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px 20px;
+      position: relative;
+      z-index: 10;
+    }
+    nav .nav-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    nav h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    nav .insignia {
+      margin-top: 5px;
+      font-size: 0.9rem;
+      color: #dcdcdc;
+      border: 2px solid #000080;
+      padding: 3px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    nav .insignia img {
+      width: 60px;
+      height: auto;
+      display: block;
+    }
+    nav ul {
+      list-style: none;
+      margin: 10px 0 0 0;
+      padding: 0;
+      display: flex;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+    }
+    nav ul li a i {
+      margin-right: 8px;
+    }
+    /* Encabezado */
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #007BFF;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    header h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      animation: textGlow 2s infinite alternate;
+    }
+    @keyframes textGlow {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+      }
+      to {
+        text-shadow: 0 0 20px #fffa, 0 0 30px #fffa;
+      }
+    }
+    /* Contenedor principal de noticias */
+    main {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    /* Estilos para cada noticia */
+    .news-item {
+      margin-bottom: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+      animation: fadeInUp 0.8s;
+    }
+    .news-item img {
+      width: 100%;
+      display: block;
+    }
+    .news-content {
+      padding: 15px;
+    }
+    .news-title {
+      font-size: 1.5rem;
+      margin: 0 0 10px;
+      color: #007BFF;
+    }
+    .news-text {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+    .interactive {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .like-btn {
+      background-color: #007BFF;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .like-btn:hover {
+      background-color: #0056b3;
+    }
+    .like-count {
+      font-size: 1rem;
+      margin-left: 8px;
+    }
+    .comment-toggle {
+      background-color: #28a745;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .comment-toggle:hover {
+      background-color: #1e7e34;
+    }
+    .comment-section {
+      margin-top: 10px;
+      padding: 0 15px 15px;
+      display: none;
+    }
+    .comment-section h4 {
+      margin: 0 0 5px;
+    }
+    .comment-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .comment-section li {
+      background: #f1f1f1;
+      margin-bottom: 5px;
+      padding: 8px;
+      border-radius: 5px;
+    }
+    .comment-form {
+      margin-top: 10px;
+    }
+    .comment-form input,
+    .comment-form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .comment-form button {
+      background-color: #007BFF;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    /* Footer */
+    footer {
+      background-color: #007BFF;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Barra de navegación (estructura igual que en la página principal) -->
+  <nav>
+    <div class="nav-top">
+      <h1>FUMANCHU 200</h1>
+      <div class="insignia">
+        <img src="img/insignia.jpg" alt="Insignia Oficial">
+      </div>
+    </div>
+    <ul>
+      <li><a href="index.html"><i class="fas fa-home"></i>Inicio</a></li>
+      <li><a href="novedades.html"><i class="fas fa-bullhorn"></i>Novedades</a></li>
+      <li><a href="desafios.html"><i class="fas fa-chart-line"></i>Desafíos</a></li>
+      <li><a href="archivos.html"><i class="fas fa-folder"></i>Archivos</a></li>
+    </ul>
+  </nav>
+
+  <!-- Encabezado -->
+  <header>
+    <h2>Novedades y Noticias Científicas</h2>
+    <p>Consulta las últimas noticias y diarios científicos</p>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <!-- Noticia 1 -->
+    <div class="news-item animate__animated animate__fadeInUp">
+      <img src="img/news1.jpg" alt="Noticia 1">
+      <div class="news-content">
+        <h2 class="news-title">Descubrimiento Revolucionario en la Química</h2>
+        <p class="news-text">
+          Científicos han anunciado un descubrimiento que podría cambiar el rumbo de la medicina moderna. Lee más sobre este hallazgo en el diario "Nature".
+        </p>
+        <div class="interactive">
+          <div>
+            <button class="like-btn" onclick="likeArticle(this)">Me gusta</button>
+            <span class="like-count">0</span>
+          </div>
+          <button class="comment-toggle" onclick="toggleCommentForm(this)">Comentar / Preguntar</button>
+        </div>
+        <div class="comment-section">
+          <h4>Comentarios y Preguntas</h4>
+          <ul class="comment-list"></ul>
+          <form class="comment-form" onsubmit="submitComment(event, this)">
+            <input type="text" name="username" placeholder="Tu nombre" required>
+            <textarea name="comment" rows="3" placeholder="Escribe tu comentario o pregunta" required></textarea>
+            <button type="submit">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Noticia 2 -->
+    <div class="news-item animate__animated animate__fadeInUp">
+      <img src="img/news2.jpg" alt="Noticia 2">
+      <div class="news-content">
+        <h2 class="news-title">Avances en Investigación Farmacéutica</h2>
+        <p class="news-text">
+          Los últimos estudios en farmacología han demostrado avances prometedores para el tratamiento de enfermedades crónicas. Consulta la cobertura completa en "Science Daily".
+        </p>
+        <div class="interactive">
+          <div>
+            <button class="like-btn" onclick="likeArticle(this)">Me gusta</button>
+            <span class="like-count">0</span>
+          </div>
+          <button class="comment-toggle" onclick="toggleCommentForm(this)">Comentar / Preguntar</button>
+        </div>
+        <div class="comment-section">
+          <h4>Comentarios y Preguntas</h4>
+          <ul class="comment-list"></ul>
+          <form class="comment-form" onsubmit="submitComment(event, this)">
+            <input type="text" name="username" placeholder="Tu nombre" required>
+            <textarea name="comment" rows="3" placeholder="Escribe tu comentario o pregunta" required></textarea>
+            <button type="submit">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Se pueden agregar más noticias siguiendo este formato -->
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 FUMANCHU 200 - Todos los derechos reservados</p>
+  </footer>
+
+  <!-- Scripts para funcionalidad interactiva -->
+  <script>
+    function likeArticle(btn) {
+      const countSpan = btn.parentElement.querySelector('.like-count');
+      let count = parseInt(countSpan.textContent);
+      count++;
+      countSpan.textContent = count;
+    }
+    function toggleCommentForm(btn) {
+      const commentSection = btn.parentElement.parentElement.querySelector('.comment-section');
+      commentSection.style.display = (commentSection.style.display === 'none' || commentSection.style.display === '') ? 'block' : 'none';
+    }
+    function submitComment(event, form) {
+      event.preventDefault();
+      const username = form.username.value;
+      const commentText = form.comment.value;
+      const commentList = form.parentElement.querySelector('.comment-list');
+      const li = document.createElement('li');
+      li.textContent = username + ": " + commentText;
+      commentList.appendChild(li);
+      form.reset();
+    }
+  </script>
+</body>
+</html>
